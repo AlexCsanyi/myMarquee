@@ -14,6 +14,41 @@ var marqueeVars = {
   panelContent: Array
 };
 
+$(document).ready(function() {
+  marqueeGatherData();
+});
+
+function marqueeGatherData() {
+  $(".marquee_data .marquee_panel").each(function(index) {
+    marqueeVars.totalPanels = index + 1;
+    var panel_image_l = $(this).attr("data-image") + "_l.jpg";
+    var panel_image_s = $(this).attr("data-image") + "_s.jpg";
+    var panel_caption = $(this).html();
+    marqueeVars.panelContent[index] =
+      '<div class="marquee_panel" data-image-s="' +
+      panel_image_s +
+      '" style="background-image:url(' +
+      panel_image_l +
+      ');"><div class="overlay"></div><div class="panel_caption">' +
+      panel_caption +
+      "</div></div>";
+  });
+  marqueeAdvance();
+}
+
+function marqueeAdvance() {
+  var marqueeWidth = $(".marquee").width();
+  var currentSize = marqueeVars.screenSize;
+
+  if (marqueeWidth > marqueeVars.mobileSize) {
+    var newSize = "large";
+  } else {
+    var newSize = "small";
+  }
+  marqueeVars.screenSize = newSize;
+}
+
+// debugger
 var debugTimer = setInterval(setDebugger, 100);
 function setDebugger() {
   $(".var1").html("screenSize = " + marqueeVars.screenSize);
