@@ -33,7 +33,7 @@ function marqueeGatherData() {
       panel_caption +
       "</div></div>";
   });
-  marqueeAdvance();
+  var marqueeTimer = setInterval(marqueeAdvance, 100);
 }
 
 function marqueeAdvance() {
@@ -46,6 +46,42 @@ function marqueeAdvance() {
     var newSize = "small";
   }
   marqueeVars.screenSize = newSize;
+
+  if (currentSize != newSize) {
+    if (marqueeVars.screenSize == "large") {
+      marqueeMultiPanel();
+    }
+  }
+
+  if (marqueeVars.timePassed == marqueeVars.timeToChange) {
+    marqueeVars.timePassed = 0;
+  } else {
+    marqueeVars.timePassed += 1;
+  }
+}
+
+function marqueeMultiPanel() {
+  marqueeVars.timePassed = 0;
+  marqueeVars.autoPlay = true;
+  var newHTML =
+    '<div class="marquee_stage_large"><div class="marquee_container_1"></div><div class="marquee_nav"></div><div class="btn prev"></div><div class="btn next"></div></div>';
+  $(".marquee")
+    .html("")
+    .append(newHTML);
+
+  for (i = 0; i < marqueeVars.totalPanels; i++) {
+    $(".marquee_nav").append("<div>x</div>");
+  }
+
+  $(".marquee").hover(
+    function() {
+      marqueeVars.autoPlay = false;
+    },
+    function() {
+      marqueeVars.autoPlay = true;
+      marqueeVars.timePassed = Math.floor(marqueeVars.timeToChange / 2);
+    }
+  );
 }
 
 // debugger
