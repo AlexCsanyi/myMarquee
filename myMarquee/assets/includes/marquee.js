@@ -70,7 +70,7 @@ function marqueeMultiPanel() {
     .append(newHTML);
 
   for (i = 0; i < marqueeVars.totalPanels; i++) {
-    $(".marquee_nav").append("<div>x</div>");
+    $(".marquee_nav").append("<div></div>");
   }
 
   $(".marquee").hover(
