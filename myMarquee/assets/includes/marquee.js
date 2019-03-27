@@ -161,6 +161,7 @@ function marqueeSinglePanel() {
 }
 
 // debugger
+/*
 var debugTimer = setInterval(setDebugger, 100);
 function setDebugger() {
   $(".var1").html("screenSize = " + marqueeVars.screenSize);
@@ -172,4 +173,4 @@ function setDebugger() {
   $(".var7").html("timePassed = " + marqueeVars.timePassed);
   $(".var8").html("timeToChange = " + marqueeVars.timeToChange);
   $(".var9").html("inTransition = " + marqueeVars.inTransition);
-}
+} */
