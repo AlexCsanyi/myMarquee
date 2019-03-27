@@ -8,7 +8,7 @@ var marqueeVars = {
   currentPanel: 1,
   totalPanels: 0,
   timePassed: 0,
-  timeToChange: 60,
+  timeToChange: 30,
   duration: 1250,
   inTransition: false,
   panelContent: Array
@@ -55,6 +55,16 @@ function marqueeAdvance() {
 
   if (marqueeVars.timePassed == marqueeVars.timeToChange) {
     marqueeVars.timePassed = 0;
+
+    if (marqueeVars.autoPlay == true) {
+      if (marqueeVars.currentPanel == marqueeVars.totalPanels) {
+        $(".marquee_nav div:nth-child(1)").trigger("click");
+      } else {
+        $(
+          ".marquee_nav div:nth-child(" + (marqueeVars.currentPanel + 1) + ")"
+        ).trigger("click");
+      }
+    }
   } else {
     marqueeVars.timePassed += 1;
   }
